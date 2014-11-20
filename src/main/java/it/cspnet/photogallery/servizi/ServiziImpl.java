@@ -2,11 +2,18 @@ package it.cspnet.photogallery.servizi;
 
 import it.cspnet.photogallery.data.UtenteDao;
 import it.cspnet.photogallery.exception.ConfermatoException;
+import it.cspnet.photogallery.exception.ExistingUserException;
 import it.cspnet.photogallery.exception.UserNotFoundException;
 import it.cspnet.photogallery.exception.WrongPasswordException;
 import it.cspnet.photogallery.model.Utente;
+import java.io.File;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+
+@Service("servizi")
+@Transactional
 public class ServiziImpl implements Servizi {
     
     @Autowired
@@ -31,6 +38,19 @@ public class ServiziImpl implements Servizi {
             }
         } else {
             throw new UserNotFoundException();
+        }
+    }
+
+    @Override
+    public Utente creaUtente(Utente utente) throws ExistingUserException, Exception {
+         if (utenteDao.exists(utente.getUsername()))
+            throw new ExistingUserException();
+        else{
+             File cartellaUtente = new File("C:/fotografie/"+utente.getUsername());
+             if(!cartellaUtente.exists()){
+                 cartellaUtente.mkdir();
+             }
+            return utenteDao.save(utente);
         }
     }
 
