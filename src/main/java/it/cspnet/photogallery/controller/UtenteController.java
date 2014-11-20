@@ -47,7 +47,7 @@ public class UtenteController {
         } catch (Exception ex) {
 //            logger.error("Eccezione: " + ex + "-" + ex.getMessage());
             js.setCodice(1);
-            js.setMessaggio("Sito in manutenzione: riprovare più tardi");
+            js.setMessaggio("Sito in manutenzione: riprovare piï¿½ tardi");
             System.out.println(ex);
         }
         return js;
