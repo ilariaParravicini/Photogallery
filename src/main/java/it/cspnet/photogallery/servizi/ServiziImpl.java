@@ -6,7 +6,11 @@ import it.cspnet.photogallery.exception.UserNotFoundException;
 import it.cspnet.photogallery.exception.WrongPasswordException;
 import it.cspnet.photogallery.model.Utente;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Service("servizi")
+@Transactional
 public class ServiziImpl implements Servizi {
     
     @Autowired

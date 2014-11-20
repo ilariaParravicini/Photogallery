@@ -5,6 +5,7 @@ import it.cspnet.photogallery.exception.UserNotFoundException;
 import it.cspnet.photogallery.exception.WrongPasswordException;
 import it.cspnet.photogallery.model.JsonResults;
 import it.cspnet.photogallery.model.Utente;
+import it.cspnet.photogallery.servizi.Servizi;
 import it.cspnet.photogallery.servizi.ServiziImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UtenteController {
     
     @Autowired
-    private ServiziImpl servizi;
+    private Servizi servizi;
 
-    public void setServizi(ServiziImpl servizi) {
+    public void setServizi(Servizi servizi) {
         this.servizi = servizi;
     }
     
-     @RequestMapping(value = "/accedi", method = RequestMethod.POST)
+    @RequestMapping(value = "/accedi", method = RequestMethod.POST)
     public @ResponseBody
     JsonResults login(@RequestBody Utente utente) {
 //        logger.debug("sono nel metodo accedi di AuthController");
