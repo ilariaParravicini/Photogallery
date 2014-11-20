@@ -21,7 +21,7 @@ public class Utente implements Serializable {
     @Column(name = "PROFILO", length = 20, nullable = false, columnDefinition = "varchar(20) DEFAULT 'user'")
     private String profilo = "user";
     @Column(name="CONFERMATO",length = 5,nullable = false,columnDefinition = "varchar(20) DEFAULT 'NO'")
-    private String confermato = "NO";
+    private String confermato = "si";
     @Column(name="EMAIL",length = 50,nullable = false)
     private String email;
     
