@@ -16,7 +16,7 @@
     <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-        <property name="persistenceUnitName" value="gestioneEventiPU"/>
+        <property name="persistenceUnitName" value="photogalleryPU"/>
         <property name="dataSource" ref="dataSource" />
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
@@ -27,7 +27,7 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-                <!--<entry key="hibernate.hbm2ddl.auto" value="create"/>-->
+                <entry key="hibernate.hbm2ddl.auto" value="create"/>
                 <entry key="hibernate.format_sql" value="true" />
             </map>
         </property>

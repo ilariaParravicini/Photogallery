@@ -1,9 +1,12 @@
 package it.cspnet.photogallery.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,9 +24,11 @@ public class Utente implements Serializable {
     private String confermato = "NO";
     @Column(name="EMAIL",length = 50,nullable = false)
     private String email;
-
-
-    public Utente() {
+    
+    @OneToMany(mappedBy="utente")
+    private Set<Album> albums = new HashSet<Album>();
+    
+        public Utente() {
     }
 
     public String getUsername() {
@@ -65,8 +70,15 @@ public class Utente implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-     
 
+    public Set<Album> getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(Set<Album> albums) {
+        this.albums = albums;
+    }
+        
     @Override
     public int hashCode() {
         int hash = 3;
