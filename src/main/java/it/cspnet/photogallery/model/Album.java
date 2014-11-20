@@ -26,7 +26,6 @@ public class Album implements Serializable{
     private Utente utente;
     
     @OneToMany(mappedBy="album")
-     @JoinColumn(name="FOTO")
     private Set<Foto> fotos = new HashSet<Foto>();
 
     public Album() {
