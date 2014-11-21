@@ -1,12 +1,12 @@
 package it.cspnet.photogallery.controller;
 
 import it.cspnet.photogallery.exception.ConfermatoException;
+import it.cspnet.photogallery.exception.ExistingUserException;
 import it.cspnet.photogallery.exception.UserNotFoundException;
 import it.cspnet.photogallery.exception.WrongPasswordException;
 import it.cspnet.photogallery.model.JsonResults;
 import it.cspnet.photogallery.model.Utente;
 import it.cspnet.photogallery.servizi.Servizi;
-import it.cspnet.photogallery.servizi.ServiziImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,6 +52,27 @@ public class UtenteController {
             System.out.println(ex);
         }
         return js;
+    }
+    
+    @RequestMapping(value = "/registrati")
+    public @ResponseBody JsonResults registrazioneUtente(@RequestBody Utente utente) {
+//        logger.debug("Sono nel metodo di registrazione utente");
+        JsonResults jR = new JsonResults();
+        try {
+            jR.setCodice(0);
+            jR.setRisultato(servizi.creaUtente(utente));
+//            logger.debug("Utente registrato correttamente");
+        } catch (ExistingUserException ex) {
+            jR.setCodice(1);
+            jR.setMessaggio("Utente già esistente");
+//            logger.error("Eccezione: "+ex+"-"+ex.getMessage());
+        } catch (Exception ex) {
+            jR.setCodice(1);
+            jR.setMessaggio("Sito in manutenzione: riprovare più tardi");
+//            logger.error("Eccezione: "+ex+"-"+ex.getMessage());
+            System.out.println(ex);
+        }        
+        return jR;
     }
 
 }

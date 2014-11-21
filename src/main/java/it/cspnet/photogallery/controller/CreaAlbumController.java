@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package it.cspnet.photogallery.controller;
 
+import it.cspnet.photogallery.exception.FileGiaEsistenteException;
 import it.cspnet.photogallery.model.Album;
 import it.cspnet.photogallery.model.JsonResults;
 import it.cspnet.photogallery.model.Utente;
@@ -18,10 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- *
- * @author corsojava
- */
 @Controller
 public class CreaAlbumController {
     
@@ -32,9 +23,19 @@ public class CreaAlbumController {
         this.servizi = servizi;
     }
     
-//    @RequestMapping(value = "/creaAlbum")
-//    public @ResponseBody
-//    JsonResults creaAlbum(@RequestBody Album album) {
-//        File dir = new File("");
-//    }
+    @RequestMapping(value = "/creaAlbum")
+    public @ResponseBody
+    JsonResults creaAlbum(@RequestBody Album album) {
+        //prendere utente in sessione
+        JsonResults jR = new JsonResults();
+        try{
+            jR.setCodice(0);
+            servizi.creaAlbum(album);
+            jR.setMessaggio("ok");
+        } catch (FileGiaEsistenteException ex){
+            jR.setCodice(1);
+            jR.setMessaggio("File già esistente. Specificare un altro nome");            
+        }
+        return jR;
+    }
 }

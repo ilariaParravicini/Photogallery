@@ -7,9 +7,9 @@ photogallery.controller('LoginCtrl', function($scope, dataServices, $location, $
             $scope.messaggio = risposta.messaggio;
         
     };
+    
     $scope.login=function(utente) {
         dataServices.login(utente, loginCallback);
-//        $location.path('/listaProdotti');
     };
 });
     

@@ -15,6 +15,10 @@ photogallery.config(['$routeProvider',
                     templateUrl: 'partials/home.html',
                     controller: 'HomeCtrl'
                 }).
+                when('/creaAlbum', {
+                    templateUrl: 'partials/creaAlbum.html',
+                    controller: 'CreaAlbumCtrl'
+                }).
 //                when('/logout', {
 //                    templateUrl: 'partials/login.html',
 //                    controller: 'HomeCtrl'
