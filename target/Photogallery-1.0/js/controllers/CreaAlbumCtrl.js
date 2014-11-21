@@ -1,5 +1,5 @@
 photogallery.controller('CreaAlbumCtrl', function($scope, dataServices, $location, $sessionStorage) {
-    var CreaAlbumCallback = function(risposta) {
+    var creaAlbumCallback = function(risposta) {
         if (risposta.codice === 0) {
             $scope.messaggio = risposta.messaggio;
 //            $location.path('/home');
@@ -9,7 +9,7 @@ photogallery.controller('CreaAlbumCtrl', function($scope, dataServices, $locatio
     };
     
     $scope.creaAlbum=function(album) {
-        dataServices.creaAlbum(album, CreaAlbumCallback);
+        dataServices.creaAlbum(album, creaAlbumCallback);
     };
 });
 

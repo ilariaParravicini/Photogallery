@@ -10,6 +10,7 @@ import it.cspnet.photogallery.exception.WrongPasswordException;
 import it.cspnet.photogallery.model.Album;
 import it.cspnet.photogallery.model.Utente;
 import java.io.File;
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,13 +64,19 @@ public class ServiziImpl implements Servizi {
     }
 
     @Override
-    public void creaAlbum(Album album) throws FileGiaEsistenteException {
+    public void creaAlbum(Album album, String username) throws FileGiaEsistenteException {
+        album.setUtente(utenteDao.findOne(username));
         if (albumDao.exists(album.getNome())){
             throw new FileGiaEsistenteException();
         }else{
             albumDao.save(album);
-            File dir = new File("C:/Fotografie/onda/"+album.getNome());
+            File dir = new File("C:/Fotografie/"+album.getUtente().getUsername()+"/"+album.getNome());
             dir.mkdir();
         }
+    }
+
+    @Override
+    public Collection<Album> listaAlbum() {
+        return albumDao.findAll();
     }
 }

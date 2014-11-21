@@ -1,5 +1,6 @@
 package it.cspnet.photogallery.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,6 +27,7 @@ public class Utente implements Serializable {
     private String email;
     
     @OneToMany(mappedBy="utente")
+    @JsonIgnore
     private Set<Album> albums = new HashSet<Album>();
     
         public Utente() {

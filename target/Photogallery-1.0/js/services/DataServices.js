@@ -12,16 +12,23 @@ photogallery.factory('dataServices', function($http, $sessionStorage) {
                         });
             },
             creaAlbum = function(album, CreaAlbumCallback) {
-                $http.post('rest/creaAlbum', album).
+                $http.post('rest/creaAlbum', album, {params: {username: $sessionStorage.utente.username}}).
                         success(function(data, status, headers, config) {
-                            CreaAlbumCallback(data);
+                            creaAlbumCallback(data);
+                        });
+            },
+            getAlbum = function(visualizzaAlbumCallback) {
+                $http.post('rest/listaAlbum/').
+                        success(function(data, status, headers, config) {
+                            visualizzaAlbumCallback(data);
                         });
             };
 
     return {
         login : login,
         creaUtente : creaUtente,
-        creaAlbum : creaAlbum
+        creaAlbum : creaAlbum,
+        getAlbum : getAlbum
 
     };
 });

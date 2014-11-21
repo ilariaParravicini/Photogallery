@@ -1,0 +1,8 @@
+<div>
+    <form ng-controller="uploader">
+	<input type="file" ng-model="files" multiple />
+	<button ng-click="upload();">Submit</button>
+	<li ng-repat="file in files">{{file.name}}</li>
+</form>
+</div>
+

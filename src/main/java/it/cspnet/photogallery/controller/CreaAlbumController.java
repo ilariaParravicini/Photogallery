@@ -6,6 +6,7 @@ import it.cspnet.photogallery.model.JsonResults;
 import it.cspnet.photogallery.model.Utente;
 import it.cspnet.photogallery.servizi.Servizi;
 import java.io.File;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,12 +26,13 @@ public class CreaAlbumController {
     
     @RequestMapping(value = "/creaAlbum")
     public @ResponseBody
-    JsonResults creaAlbum(@RequestBody Album album) {
+    JsonResults creaAlbum(@RequestBody Album album, HttpServletRequest req) {
         //prendere utente in sessione
         JsonResults jR = new JsonResults();
+        String username = req.getParameter("username");
         try{
             jR.setCodice(0);
-            servizi.creaAlbum(album);
+            servizi.creaAlbum(album, username);
             jR.setMessaggio("ok");
         } catch (FileGiaEsistenteException ex){
             jR.setCodice(1);

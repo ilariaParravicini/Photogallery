@@ -7,6 +7,7 @@ import it.cspnet.photogallery.exception.UserNotFoundException;
 import it.cspnet.photogallery.exception.WrongPasswordException;
 import it.cspnet.photogallery.model.Album;
 import it.cspnet.photogallery.model.Utente;
+import java.util.Collection;
 
 public interface Servizi {
     
@@ -14,6 +15,8 @@ public interface Servizi {
     
     public Utente creaUtente(Utente utente) throws ExistingUserException,Exception;
 
-    public void creaAlbum(Album album) throws FileGiaEsistenteException;
+    public void creaAlbum(Album album, String username) throws FileGiaEsistenteException;
+
+    public Collection<Album> listaAlbum();
     
 }

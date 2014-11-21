@@ -1,0 +1,20 @@
+<div class="col-md-9 col-md-offset-3">
+        <h3>Lista Album</h3>
+        <table class="table table-bordered">
+            <thead class="centrato">
+                <tr>
+                    <th>Nome</th>
+                    <th>Descrizione</th>
+                    
+                </tr>
+            </thead>    
+            <tr ng-repeat="album in album">
+                <td><a href="#/caricaFoto/{{album.nome}}" ng-click="caricaFoto()">{{album.nome}}</td>
+                <td>{{album.descrizione}}</td>
+                <!--<td><a href="#/iscrivi/{{evento.idEvento}}" ng-click="iscrivi()"><img src="img/iscriviti.png" /></a></td>-->
+                <!--<td><a href="#/listaPartecipanti/{{evento.idEvento}}" ng-click="listaPartecipanti(evento.idEvento)"><img src="img/lista.png" /></a></td> --> 
+                 
+            </tr>
+        </table>
+        <div>{{messaggio}}</div>
+    </div>

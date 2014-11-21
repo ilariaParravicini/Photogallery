@@ -18,7 +18,16 @@ photogallery.config(['$routeProvider',
                 when('/creaAlbum', {
                     templateUrl: 'partials/creaAlbum.html',
                     controller: 'CreaAlbumCtrl'
-                }).              
+                }).
+                when('/listaAlbum', {
+                    templateUrl: 'partials/listaAlbum.html',
+                    controller: 'VisualizzaCtrl'
+                }).
+//                aggiunto da cristian
+                when('/caricaFoto/:nome',{
+                    temlplateUrl: 'partials/caricaFoto.html',
+                    controller: 'CaricaFotoCtrl'
+                }).
                 otherwise({
                     redirectTo: '/login'
                 });
