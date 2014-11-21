@@ -18,11 +18,7 @@ photogallery.config(['$routeProvider',
                 when('/creaAlbum', {
                     templateUrl: 'partials/creaAlbum.html',
                     controller: 'CreaAlbumCtrl'
-                }).
-//                when('/logout', {
-//                    templateUrl: 'partials/login.html',
-//                    controller: 'HomeCtrl'
-//                }).
+                }).              
                 otherwise({
                     redirectTo: '/login'
                 });

@@ -5,13 +5,12 @@ photogallery.controller('LoginCtrl', function($scope, dataServices, $location, $
             $location.path('/home');
         } else
             $scope.messaggio = risposta.messaggio;
-        
     };
-    
-    $scope.login=function(utente) {
+
+    $scope.login = function(utente) {
         dataServices.login(utente, loginCallback);
     };
 });
-    
+
 
 
